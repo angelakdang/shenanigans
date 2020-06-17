@@ -57,7 +57,7 @@ def main(filename='data.json'):
 
     data = get_data()
 
-    candidates = set(data['Names']) - set(data['Names']).intersection(set(data['Done']))
+    candidates = set(data['Names']) - set(data['Done'])
     candidates = np.array(list(candidates))
     victim = np.random.choice(candidates)
 
