@@ -26,8 +26,8 @@ def get_data(filename='data.json'):
 
     with open(filename) as f:
         ice_breaker_data = json.load(f)
-    if len(ice_breaker_data['Names']) == len(ice_breaker_data['Done']):
-        ice_breaker_data['Done'] == []
+    if len(ice_breaker_data['Done']) >= len(ice_breaker_data['Names']):
+        ice_breaker_data['Done'] = []
 
     return ice_breaker_data
 
