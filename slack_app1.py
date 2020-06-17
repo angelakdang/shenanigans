@@ -5,13 +5,13 @@
 @brief: Icebreaker shenanigans.
 """
 
-import numpy as np 
-import json 
-import sys 
+import numpy as np
+import json
+import sys
 
 def get_data(filename='data.json'):
-    """This function gets the data and reads it as a dictionary and checks if 
-    a whole round has been completed. If completed, then the 'Done' list is 
+    """This function gets the data and reads it as a dictionary and checks if
+    a whole round has been completed. If completed, then the 'Done' list is
     reset.
 
     Parameters:
@@ -20,15 +20,15 @@ def get_data(filename='data.json'):
 
     Returns:
 
-    ice_breaker_data -- a dictionary of the data containing people to do 
+    ice_breaker_data -- a dictionary of the data containing people to do
     icebreakers.
     """
 
     with open(filename) as f:
         ice_breaker_data = json.load(f)
-    if len(ice_breaker_data['Names']) == len(ice_breaker_data['Done']):
-        ice_breaker_data['Done'] == []
-    
+    if len(ice_breaker_data['Done']) >= len(ice_breaker_data['Names']):
+        ice_breaker_data['Done'] = []
+
     return ice_breaker_data
 
 
@@ -57,9 +57,9 @@ def main(filename='data.json'):
 
     data = get_data()
 
-    candidates = set(data['Names']) - set(data['Names']).intersection(set(data['Done']))
+    candidates = set(data['Names']) - set(data['Done'])
     candidates = np.array(list(candidates))
-    victim = np.random.choice(candidates) 
+    victim = np.random.choice(candidates)
 
     print("The next victim is: ", victim)
 
